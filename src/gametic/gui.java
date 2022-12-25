@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
@@ -25,9 +26,12 @@ public class gui extends JFrame implements ActionListener {
     Color color = new Color(11, 89, 236);
     Integer k = 0;
     boolean[] check = new boolean[10];
+    // string[] str1 = "";
+    String str1 = "";
+    String str2 = "";
     JOptionPane optionPane = new JOptionPane();
     int[] winPlayer = new int[10];
-    int[][] winComb = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 1, 4, 7 }, { 0, 3, 6 }, { 3, 6, 9 },
+    int[][] winComb = new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 }, { 1, 4, 7 }, { 2, 5, 8 }, { 3, 6, 9 },
             { 1, 5, 9 }, { 3, 5, 7 } };
 
     gui() {
@@ -46,7 +50,7 @@ public class gui extends JFrame implements ActionListener {
     public void Title() {
         // System.out.println("sdfa");
         JLabel label1 = new JLabel();
-        label1.setText("Player 0 vs Player 1");
+        label1.setText("Tic Tac Toe");
         // this.setLayout(new BorderLayout());
         label1.setFont(font);
         label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,16 +130,20 @@ public class gui extends JFrame implements ActionListener {
             boolean ok = false;
             for (int i = 0; i < 8; i++) {
                 if (winPlayer[winComb[i][0]] == 2 && winPlayer[winComb[i][1]] == 2 && winPlayer[winComb[i][2]] == 2) {
-                    System.out.println("Player 2");
+                  //  System.out.println("Player 2");
                     ok = true;
                     optionPane.showMessageDialog(null, "player 2 win");
                     // this.dispose();
                 } else if (winPlayer[winComb[i][0]] == 1 && winPlayer[winComb[i][1]] == 1
                         && winPlayer[winComb[i][2]] == 1) {
                     ok = true;
-                    System.out.println("player 1");
+                //    System.out.println("player 1");
                     optionPane.showMessageDialog(null, "player 1 win");
                     // this.dispose();
+                }
+                if (!ok && k == 9) {
+                    optionPane.showMessageDialog(null, "Match Drawn!!!!!!!");
+                    ok = true;
                 }
             }
             if (ok) {
